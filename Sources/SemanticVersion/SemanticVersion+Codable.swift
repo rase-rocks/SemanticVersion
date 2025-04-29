@@ -8,10 +8,16 @@ extension SemanticVersion: Codable {
     /// - Parameter container: The `SingleValueDecodingContainer` that was used in decoding.
     ///
     /// - Returns: A `DecodingError` representing an invalid version string.
-    static func dataCorruptedError(in container: SingleValueDecodingContainer) -> DecodingError {
+    static func dataCorruptedError(
+        in container: SingleValueDecodingContainer
+    ) -> DecodingError {
+        
         return DecodingError
-            .dataCorruptedError(in: container,
-                                debugDescription: "Invalid semantic version")
+            .dataCorruptedError(
+                in: container,
+                debugDescription: "Invalid semantic version"
+            )
+        
     }
     
     /// Encodes a ``SemanticVersion`` with a single value container

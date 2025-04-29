@@ -65,11 +65,13 @@ final class SemanticVersionEquatableTests: XCTestCase {
             
             if baseVersion.major == UInt.max { continue }
             
-            let updatedVersion = SemVer(major: baseVersion.major + 1,
-                                        minor: baseVersion.minor,
-                                        patch: baseVersion.patch,
-                                        prerelease: baseVersion.prerelease,
-                                        buildMetadata: baseVersion.buildMetadata)
+            let updatedVersion = SemVer(
+                major: baseVersion.major + 1,
+                minor: baseVersion.minor,
+                patch: baseVersion.patch,
+                prerelease: baseVersion.prerelease,
+                buildMetadata: baseVersion.buildMetadata
+            )
             
             XCTAssertNotEqual(updatedVersion, baseVersion)
             
@@ -85,11 +87,13 @@ final class SemanticVersionEquatableTests: XCTestCase {
             
             if baseVersion.minor == UInt.max { continue }
             
-            let updatedVersion = SemVer(major: baseVersion.major,
-                                        minor: baseVersion.minor + 1,
-                                        patch: baseVersion.patch,
-                                        prerelease: baseVersion.prerelease,
-                                        buildMetadata: baseVersion.buildMetadata)
+            let updatedVersion = SemVer(
+                major: baseVersion.major,
+                minor: baseVersion.minor + 1,
+                patch: baseVersion.patch,
+                prerelease: baseVersion.prerelease,
+                buildMetadata: baseVersion.buildMetadata
+            )
             
             XCTAssertNotEqual(updatedVersion, baseVersion)
             
@@ -105,11 +109,13 @@ final class SemanticVersionEquatableTests: XCTestCase {
             
             if baseVersion.patch == UInt.max { continue }
             
-            let updatedVersion = SemVer(major: baseVersion.major,
-                                        minor: baseVersion.minor,
-                                        patch: baseVersion.patch + 1,
-                                        prerelease: baseVersion.prerelease,
-                                        buildMetadata: baseVersion.buildMetadata)
+            let updatedVersion = SemVer(
+                major: baseVersion.major,
+                minor: baseVersion.minor,
+                patch: baseVersion.patch + 1,
+                prerelease: baseVersion.prerelease,
+                buildMetadata: baseVersion.buildMetadata
+            )
             
             XCTAssertNotEqual(updatedVersion, baseVersion)
             
@@ -128,7 +134,10 @@ final class SemanticVersionEquatableTests: XCTestCase {
     
     func testInEqualBuildmetadata() {
         
-        XCTAssertEqual(SemVer("1.101.345-rc.1+build.sha.111"), SemVer("1.101.345-rc.1+build.sha.112"))
+        XCTAssertEqual(
+            SemVer("1.101.345-rc.1+build.sha.111"),
+            SemVer("1.101.345-rc.1+build.sha.112")
+        )
         
     }
     

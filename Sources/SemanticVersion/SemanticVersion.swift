@@ -21,17 +21,19 @@ public struct SemanticVersion {
     
     /// The build metadata. Metadata is ignored for hashing and equality operations
     public let buildMetadata: [String]
-        
+    
     /// A Boolean value indicating whether the version is pre-release version
     public var isPrerelease: Bool {
         return !prerelease.isEmpty
     }
     
-    public init(major: UInt,
-                minor: UInt,
-                patch: UInt,
-                prerelease: [String],
-                buildMetadata: [String]) {
+    public init(
+        major: UInt,
+        minor: UInt,
+        patch: UInt,
+        prerelease: [String],
+        buildMetadata: [String]
+    ) {
         
         self.major = major
         self.minor = minor

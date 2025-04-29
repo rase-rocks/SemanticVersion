@@ -22,26 +22,26 @@ extension SemanticVersion: Comparable {
         return lhs
             .prerelease
             .lexicographicallyPrecedes(rhs.prerelease) { lpr, rpr in
-            
-            if lpr == rpr { return false }
-            
-            switch (UInt(lpr), UInt(rpr)) {
                 
-            case let (l?, r?):
-                return l < r
+                if lpr == rpr { return false }
                 
-            case (nil, nil):
-                return lpr < rpr
-                
-            case (_?, nil):
-                return true
-                
-            case (nil, _?):
-                return false
+                switch (UInt(lpr), UInt(rpr)) {
+                    
+                case let (l?, r?):
+                    return l < r
+                    
+                case (nil, nil):
+                    return lpr < rpr
+                    
+                case (_?, nil):
+                    return true
+                    
+                case (nil, _?):
+                    return false
+                    
+                }
                 
             }
-            
-        }
         
     }
     

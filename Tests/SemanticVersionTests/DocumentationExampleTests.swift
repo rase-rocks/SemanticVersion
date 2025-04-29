@@ -7,7 +7,7 @@ final class DocumentationExampleTests: XCTestCase {
         let name: String
         let version: SemVer
     }
-
+    
     func testStringLiteral() {
         
         let version = SemVer("14.4.1")
@@ -20,8 +20,10 @@ final class DocumentationExampleTests: XCTestCase {
     
     func testCodable() throws {
         
-        let book = Book(name: "Alice in Wonderland", 
-                        version: SemVer("14.4.1")!)
+        let book = Book(
+            name: "Alice in Wonderland",
+            version: SemVer("14.4.1")!
+        )
         
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
@@ -50,5 +52,5 @@ final class DocumentationExampleTests: XCTestCase {
         XCTAssertTrue(fourteenFourTwo > fourteenFourOne)
         
     }
-
+    
 }

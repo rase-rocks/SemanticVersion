@@ -11,11 +11,16 @@ extension SemanticVersion: Equatable {
     /// - Parameter rhs: A ``SemanticVersion`` instance.
     ///
     /// - Returns: A truthy value if the ``SemanticVersion`` passed are considered equal.
-    public static func ==(lhs: SemanticVersion, rhs: SemanticVersion) -> Bool {
+    public static func ==(
+        lhs: SemanticVersion,
+        rhs: SemanticVersion
+    ) -> Bool {
+        
         return lhs.major == rhs.major &&
         lhs.minor == rhs.minor &&
         lhs.patch == rhs.patch &&
         lhs.prerelease == rhs.prerelease
+        
     }
     
 }

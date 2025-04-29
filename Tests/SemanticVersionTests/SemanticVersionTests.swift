@@ -17,15 +17,19 @@ class SemanticVersionTests: XCTestCase {
     
     func testEquality() {
         
-        XCTAssertNotEqual(SemVer.plausible(),
-                          SemVer.plausible())
+        XCTAssertNotEqual(
+            SemVer.plausible(),
+            SemVer.plausible()
+        )
         
     }
     
     func testHashable() {
         
-        XCTAssertNotEqual(SemVer.plausible().hashValue,
-                          SemVer.plausible().hashValue)
+        XCTAssertNotEqual(
+            SemVer.plausible().hashValue,
+            SemVer.plausible().hashValue
+        )
         
     }
     
@@ -70,11 +74,13 @@ extension SemanticVersion {
                 .map { _ in return validVersionIdentifier() }
         }
         
-        return SemanticVersion(major: validVersion(),
-                               minor: validVersion(),
-                               patch: validVersion(),
-                               prerelease: randomIdentifiers(5),
-                               buildMetadata: randomIdentifiers(5))
+        return SemanticVersion(
+            major: validVersion(),
+            minor: validVersion(),
+            patch: validVersion(),
+            prerelease: randomIdentifiers(5),
+            buildMetadata: randomIdentifiers(5)
+        )
         
     }
     
