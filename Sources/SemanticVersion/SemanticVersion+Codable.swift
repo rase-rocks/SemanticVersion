@@ -24,7 +24,7 @@ extension SemanticVersion: Codable {
     ///
     /// - Parameter encoder: The `Encoder` instance.
     ///
-    /// - Throws: Rethrows encodig errors.
+    /// - Throws: Rethrows encoding errors.
     public func encode(to encoder: Encoder) throws {
         
         var container = encoder.singleValueContainer()

@@ -32,10 +32,12 @@ All of which is to say that a `SemanticVersion` can be instantiated from a strin
 
 ```swift
 let version = SemVer("14.4.1")
-// version.major == 14
-// version.minor == 4
-// version.patch == 1
+// version?.major == 14
+// version?.minor == 4
+// version?.patch == 1
 ```
+
+The initialiser is failable and returns `nil` for any string that is not a valid Semantic Versioning string. It also returns `nil` for inputs longer than 256 characters, or whose major, minor, or patch numbers exceed `UInt.max`.
 
 ### Codable conformance
 
@@ -53,8 +55,10 @@ struct Book: Equatable, Codable {
 As the properties of `Book` both also conform to `Equatable` and `Codable`, nothing extra is needed.
 
 ```swift
-let book = Book(name: "Alice in Wonderland", 
-                version: SemVer("14.4.1")!)
+let book = Book(
+    name: "Alice in Wonderland",
+    version: SemVer("14.4.1")!
+)
 
 let encoder = JSONEncoder()
 encoder.outputFormatting = .prettyPrinted
@@ -62,8 +66,10 @@ encoder.outputFormatting = .prettyPrinted
 let data = try encoder
     .encode(book)
 
-let string = String(data: data,
-                    encoding: .utf8)!
+let string = String(
+    data: data,
+    encoding: .utf8
+)!
 
 print(string)
 
@@ -99,6 +105,8 @@ let fourteenFourTwo = SemVer("14.4.2")!
 ```
 
 For more detailed usage examples and how this implementation handles prerelease and build meta data see the [unit tests](https://github.com/rase-rocks/SemanticVersion/blob/main/Tests/SemanticVersionTests/SemanticVersionComparableTests.swift).
+
+**Note** In accordance with the specification, build metadata is ignored for equality, hashing and ordering. This means two versions that differ only by build metadata (for example `1.0.0+a` and `1.0.0+b`) compare as equal, even though their string representations — and therefore their encoded forms, differ. If you need to distinguish them, compare their `description` values directly.
 
 ## Contributing
 

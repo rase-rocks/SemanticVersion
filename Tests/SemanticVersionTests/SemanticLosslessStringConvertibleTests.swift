@@ -28,9 +28,19 @@ final class SemanticLosslessStringConvertibleTests: XCTestCase {
         let value = "1.101.345-rc.alpha.11+build.sha.111.extended"
         
         let ver = SemVer(value)
-        
+
         XCTAssertEqual(ver?.description, value)
-        
+
     }
-    
+
+    func testOverlongStringReturnsNil() {
+
+        // Inputs beyond the parser's length bound are rejected before the regular
+        // expression runs, bounding the work done on untrusted input.
+        let longPrerelease = String(repeating: "a", count: 1_000)
+
+        XCTAssertNil(SemVer("1.2.3-\(longPrerelease)"))
+
+    }
+
 }

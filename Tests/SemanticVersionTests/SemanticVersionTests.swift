@@ -16,21 +16,58 @@ class SemanticVersionTests: XCTestCase {
     }
     
     func testEquality() {
-        
-        XCTAssertNotEqual(
-            SemVer.plausible(),
-            SemVer.plausible()
+
+        let base = SemVer(
+            major: 1,
+            minor: 2,
+            patch: 3,
+            prerelease: ["alpha", "1"],
+            buildMetadata: ["build", "99"]
         )
-        
+
+        let identical = SemVer(
+            major: 1,
+            minor: 2,
+            patch: 3,
+            prerelease: ["alpha", "1"],
+            buildMetadata: ["build", "99"]
+        )
+
+        // Build metadata is ignored for equality
+        let differingBuildMetadata = SemVer(
+            major: 1,
+            minor: 2,
+            patch: 3,
+            prerelease: ["alpha", "1"],
+            buildMetadata: ["other"]
+        )
+
+        XCTAssertEqual(base, identical)
+        XCTAssertEqual(base, differingBuildMetadata)
+
     }
-    
+
     func testHashable() {
-        
-        XCTAssertNotEqual(
-            SemVer.plausible().hashValue,
-            SemVer.plausible().hashValue
+
+        let base = SemVer(
+            major: 1,
+            minor: 2,
+            patch: 3,
+            prerelease: ["alpha", "1"],
+            buildMetadata: ["build", "99"]
         )
-        
+
+        // Build metadata is ignored for hashing, so equal values hash equally
+        let differingBuildMetadata = SemVer(
+            major: 1,
+            minor: 2,
+            patch: 3,
+            prerelease: ["alpha", "1"],
+            buildMetadata: ["other"]
+        )
+
+        XCTAssertEqual(base.hashValue, differingBuildMetadata.hashValue)
+
     }
     
 }

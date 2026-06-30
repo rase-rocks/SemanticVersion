@@ -89,7 +89,24 @@ final class SemanticVersionComparableTests: XCTestCase {
         
         // Ignore build metatdata
         XCTAssertEqual(SemVer("1.99.231-alpha.bb")!, SemVer("1.99.231-alpha.bb+a")!)
-        
+
     }
-    
+
+    func testCompareLargeNumericPrerelease() {
+
+        // Numeric identifiers that exceed UInt.max must still compare numerically.
+        // As leading zeroes are disallowed, the longer identifier is the larger number.
+        XCTAssertLessThan(
+            SemVer("1.0.0-99999999999999999999999")!,
+            SemVer("1.0.0-100000000000000000000000")!
+        )
+
+        // Equal-length numeric identifiers compare digit by digit.
+        XCTAssertLessThan(
+            SemVer("1.0.0-99999999999999999999998")!,
+            SemVer("1.0.0-99999999999999999999999")!
+        )
+
+    }
+
 }

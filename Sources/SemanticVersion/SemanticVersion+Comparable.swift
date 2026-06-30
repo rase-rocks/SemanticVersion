@@ -18,31 +18,53 @@ extension SemanticVersion: Comparable {
         guard lhs.patch == rhs.patch else { return lhs.patch < rhs.patch }
         guard lhs.isPrerelease else { return false }
         guard rhs.isPrerelease else { return true }
-        
+
         return lhs
             .prerelease
             .lexicographicallyPrecedes(rhs.prerelease) { lpr, rpr in
-                
+
                 if lpr == rpr { return false }
-                
-                switch (UInt(lpr), UInt(rpr)) {
-                    
-                case let (l?, r?):
-                    return l < r
-                    
-                case (nil, nil):
+
+                let lhsIsNumeric = isNumericIdentifier(lpr)
+                let rhsIsNumeric = isNumericIdentifier(rpr)
+
+                switch (lhsIsNumeric, rhsIsNumeric) {
+
+                case (true, true):
+                    // Numeric identifiers compare numerically. The spec places
+                    // no upper bound on their length, so a `UInt` conversion can
+                    // overflow; comparing by digit count avoids that. As leading
+                    // zeroes are disallowed, the identifier with more digits is
+                    // always the larger number, and identifiers with an equal
+                    // number of digits compare correctly lexically.
+                    return lpr.count == rpr.count ? lpr < rpr : lpr.count < rpr.count
+
+                case (false, false):
                     return lpr < rpr
-                    
-                case (_?, nil):
+
+                case (true, false):
                     return true
-                    
-                case (nil, _?):
+
+                case (false, true):
                     return false
-                    
+
                 }
-                
+
             }
-        
+
     }
-    
+
+    /// Determine whether a pre-release identifier is a numeric identifier.
+    ///
+    /// A numeric identifier comprises only ASCII digits. Identifiers produced by
+    /// the parser never include leading zeroes, so this also implies that a
+    /// longer numeric identifier represents a larger value.
+    ///
+    /// - Parameter identifier: A single pre-release identifier.
+    ///
+    /// - Returns: A truthy value if every character is an ASCII digit.
+    private static func isNumericIdentifier(_ identifier: String) -> Bool {
+        return !identifier.isEmpty && identifier.allSatisfy { $0.isASCII && $0.isNumber }
+    }
+
 }

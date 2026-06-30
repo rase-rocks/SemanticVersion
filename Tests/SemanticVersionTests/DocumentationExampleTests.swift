@@ -31,8 +31,10 @@ final class DocumentationExampleTests: XCTestCase {
         let data = try encoder
             .encode(book)
         
-        let string = String(data: data,
-                            encoding: .utf8)!
+        let string = String(
+            data: data,
+            encoding: .utf8
+        )!
         
         print(string)
         
