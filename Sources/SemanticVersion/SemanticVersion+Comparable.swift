@@ -7,8 +7,9 @@ extension SemanticVersion: Comparable {
     ///
     /// This function attempts to represent the spec at [Semantic Versioning 2.0.0](http://semver.org).
     ///
-    /// - Parameter lhs: A ``SemanticVersion`` instance.
-    /// - Parameter rhs: A ``SemanticVersion`` instance.
+    /// - Parameters:
+    ///   - lhs: A ``SemanticVersion`` instance.
+    ///   - rhs: A ``SemanticVersion`` instance.
     ///
     /// - Returns: A truthy value if the `lhs` is considered less than `rhs`, as a Semantic Version.
     public static func <(lhs: SemanticVersion, rhs: SemanticVersion) -> Bool {

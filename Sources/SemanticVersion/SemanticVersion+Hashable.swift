@@ -1,5 +1,3 @@
-import Foundation
-
 /// Extends ``SemanticVersion`` with `Hashable` conformance
 extension SemanticVersion: Hashable {
     

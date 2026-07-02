@@ -1,5 +1,3 @@
-import Foundation
-
 /// Extends ``SemanticVersion`` with `Equatable` conformance
 extension SemanticVersion: Equatable {
     
@@ -7,8 +5,9 @@ extension SemanticVersion: Equatable {
     ///
     /// In semantic versioning, build metadata is ignored for equality
     ///
-    /// - Parameter lhs: A ``SemanticVersion`` instance.
-    /// - Parameter rhs: A ``SemanticVersion`` instance.
+    /// - Parameters:
+    ///   - lhs: A ``SemanticVersion`` instance.
+    ///   - rhs: A ``SemanticVersion`` instance.
     ///
     /// - Returns: A truthy value if the ``SemanticVersion`` passed are considered equal.
     public static func ==(

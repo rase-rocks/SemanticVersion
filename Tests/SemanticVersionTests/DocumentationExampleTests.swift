@@ -4,8 +4,10 @@ import XCTest
 final class DocumentationExampleTests: XCTestCase {
     
     struct Book: Equatable, Codable {
+
         let name: String
         let version: SemVer
+
     }
     
     func testStringLiteral() {

@@ -29,11 +29,12 @@ public struct SemanticVersion {
     
     /// Initialise a ``SemanticVersion`` from its individual components.
     ///
-    /// - Parameter major: The MAJOR version.
-    /// - Parameter minor: The MINOR version.
-    /// - Parameter patch: The PATCH version.
-    /// - Parameter prerelease: The pre-release identifiers.
-    /// - Parameter buildMetadata: The build metadata identifiers. Ignored for equality, hashing and ordering.
+    /// - Parameters:
+    ///   - major: The MAJOR version.
+    ///   - minor: The MINOR version.
+    ///   - patch: The PATCH version.
+    ///   - prerelease: The pre-release identifiers.
+    ///   - buildMetadata: The build metadata identifiers. Ignored for equality, hashing and ordering.
     public init(
         major: UInt,
         minor: UInt,

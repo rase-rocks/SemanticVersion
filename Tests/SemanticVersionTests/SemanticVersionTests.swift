@@ -3,8 +3,6 @@ import XCTest
 
 class SemanticVersionTests: XCTestCase {
     
-    let count = 5
-    
     func testCoding() throws {
         
         let version = SemVer.plausible()
@@ -89,6 +87,7 @@ extension SemanticVersion {
     }
     
     static func validVersionIdentifier() -> String {
+
         return [
             "0",
             "0a",
@@ -102,6 +101,7 @@ extension SemanticVersion {
             "-",
             "-1"
         ].randomElement()!
+
     }
     
     static func plausible() -> SemanticVersion {
