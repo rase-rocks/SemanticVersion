@@ -17,10 +17,12 @@ Additional labels for pre-release and build metadata are available as extensions
 To use the SemanticVersion library in a SwiftPM project, add the following line to the dependencies in your Package.swift file:
 
 ```swift
-.package(url: "https://github.com/rase-rocks/SemanticVersion.git", from: "1.0.0"),
+.package(url: "https://github.com/rase-rocks/SemanticVersion.git", from: "2.1.0"),
 ```
 
 Include "SemanticVersion" as a dependency for your executable target and finally, add `import SemanticVersion` to your source code.
+
+**Note** From 2.0.0 the package requires Swift 6.0 (Xcode 16) or later, macOS 13 or later and iOS 16 or later. SwiftPM does not offer a version to a toolchain older than its tools version, so a project on Swift 5 resolves 1.0.0 rather than failing to build.
 
 ## Usage
 
